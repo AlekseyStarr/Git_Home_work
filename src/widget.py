@@ -1,5 +1,6 @@
 from typing import Union
 
+
 def mask_account_card(type_and_number: str) -> str:
     """Функция, которая маскирует номер счета или карты"""
     if "Счёт" in type_and_number or "Счет" in type_and_number:
