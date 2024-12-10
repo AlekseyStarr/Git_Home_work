@@ -1,5 +1,6 @@
 from typing import Union
 
+
 def get_mask_card_number(card_number: Union[str]) -> str | None:
     """Возвращает замаскированный номер карты в виде строки"""
     if card_number.isdigit() and len(card_number) == 16:
