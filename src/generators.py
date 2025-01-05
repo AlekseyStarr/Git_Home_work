@@ -53,7 +53,7 @@ def filter_by_currency(info: List[Dict], usd: str) -> Iterator[int]:
     """Выдает по очереди операции, в которых указана заданная валюта."""
     for key in info:
         if key["operationAmount"]["currency"].get("code") == usd:
-            yield key["id"]
+            yield key
 
 
 usd_transactions = filter_by_currency(transactions, "USD")
@@ -75,7 +75,7 @@ for _ in range(5):
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
     """Генератор номеров банковских карт"""
     score = 0
-    while score <= stop:
+    while score < stop:
         score += 1
         new_number = 10000000000000000 + score
         yield (
