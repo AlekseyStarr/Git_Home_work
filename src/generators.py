@@ -72,21 +72,13 @@ for _ in range(5):
     print(next(descriptions))
 
 
-def card_number_generator(start: int, stop: int) -> Iterator[str]:
+def card_number_generator(start: int, stop: int):
     """Генератор номеров банковских карт"""
-    score = 0
-    while score < stop:
-        score += 1
-        new_number = 10000000000000000 + score
-        yield (
-            str(new_number)[1:5]
-            + " "
-            + str(new_number)[5:9]
-            + " "
-            + str(new_number)[9:13]
-            + " "
-            + str(new_number)[13:]
-        )
+    for card_list in range(start, stop + 1):
+        if 1 <= start <= 9999999999999999 or 1 <= stop <= 9999999999999999:
+            number = "".join([f"{card_list:016}" for _ in range(16)])
+            formatted_card_number = " ".join([number[i : i + 4] for i in range(0, 16, 4)])
+            yield formatted_card_number
 
 
 for card_number in card_number_generator(1, 5):
