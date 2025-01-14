@@ -13,11 +13,13 @@ def log(filename: Any = None) -> Any:
                 if filename is not None:
                     with open(filename, "w") as file:
                         file.write("my function OK")
+                        print("my function OK")
                 return result
             except Exception as e:
                 if filename is not None:
                     with open(filename, "w") as file:
                         file.write(f"my function error:{e}. Input: {args, kwargs}")
+                        print(f"my function error:{e}. Input: {args, kwargs}")
                 return func(*args, **kwargs)
 
         return wrapper
