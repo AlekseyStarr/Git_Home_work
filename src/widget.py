@@ -16,7 +16,7 @@ def mask_account_card(number_account_card: str) -> str:
         return f"{identifier} {get_mask_account(number)}"
 
 
-def get_date(user_data: Union[str]) -> str:
+def get_data(user_data: Union[str]) -> str:
     """Функция, которая изменяет формат даты"""
     data_day = user_data.split("Т")[0]
 
