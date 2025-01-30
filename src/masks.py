@@ -1,8 +1,13 @@
+import os
 from typing import Union
 import logging
 
+from config import ROOT_DIR
+
 logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler('../masks.log')
+# соединяем путь. К корневой директории добавляем директорию logs и добавляем название файла.
+log_file_path = os.path.join(ROOT_DIR, 'logs', 'masks.log')
+file_handler = logging.FileHandler(log_file_path, "w")
 file_formatter = logging.Formatter('%(asctime)s - %(filename)s - %(levelname)s: %(message)s')
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -15,7 +20,7 @@ def get_mask_card_number(card_number: Union[str]) -> str | None:
     if card_number.isdigit() and len(card_number) == 16:
         return f"{card_number[0:-12]} {card_number[-12:-10]}{"*" * 2} {"*" * 4} {card_number[-4:]}"
     else:
-        logger.info("Окончили маскировку карты")
+        logger.error("Окончили маскировку карты")
         return "Ошибка, проверьте правильность ввода"
 
 
@@ -25,5 +30,5 @@ def get_mask_account(acc_number: Union[str]) -> str | None:
     if acc_number.isdigit() and len(acc_number) == 20:
         return f"{'*' * 2}{acc_number[-4::]}"
     else:
-        logger.info("Окончили маскировку номера счета")
+        logger.error("Ошибка, проверьте правильность ввода")
         return "Ошибка, проверьте правильность ввода"
