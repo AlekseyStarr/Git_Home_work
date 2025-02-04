@@ -9,6 +9,8 @@ packages = [{include = "9"}]
 [tool.poetry.dependencies]
 python = "^3.13"
 python-dotenv = "^1.0.1"
+pandas = "^2.2.2"
+openpyxl = "^3.1.5"
 
 
 [tool.poetry.group.dev.dependencies]

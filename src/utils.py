@@ -37,7 +37,7 @@ def read_file_csv(filename: str = None) -> list:
         logger.info("Начал выгрузку с файла csv формата")
         with open(filename, encoding="utf-8") as file:  # Открытие и считывание файла формата CSV
             reading_csv = csv.DictReader(file, delimiter=";")
-            reading = [read for read in reading_csv]  # Считывание файла методом цикла
+            reading = list(reading_csv) # Считывание файла методом цикла
         logger.info("Окончили выгрузку с файла csv формата")
         return reading
     except Exception as e:
@@ -51,23 +51,7 @@ def read_file_excel(filename: str = None) -> list:
         """Это логер для функции read_file_excel"""
         logger.info("Начал выгрузку с файла excel формата")
         reading_excel = pd.read_excel(filename)  # считывание EXCEL файла
-        new_list = []
-        while True:
-            for index, row in reading_excel.iterrows():  # Цикл по файлу и отбор необходимых данных
-                list_file = {
-                    "id": row["id"],
-                    "state": row["state"],
-                    "date": row["date"],
-                    "amount": row["amount"],
-                    "currency_name": row["currency_name"],
-                    "currency_code": row["currency_code"],
-                    "from": row["from"],
-                    "to": row["to"],
-                    "description": row["description"],
-                }
-                new_list.append(list_file)  # добавление каждого цикла в новый список
-            logger.info("Окончили выгрузку с файла excel формата")
-            return new_list  # возвращает новый список
+        return reading_excel.to_dict('records')
     except Exception as e:
         logger.error(f"Произошла ошибка: {e}")
         return []  # В случае ошибки возвращает пустой список
