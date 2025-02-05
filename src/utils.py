@@ -37,7 +37,7 @@ def read_file_csv(filename: str = None) -> list:
         logger.info("Начал выгрузку с файла csv формата")
         with open(filename, encoding="utf-8") as file:  # Открытие и считывание файла формата CSV
             reading_csv = csv.DictReader(file, delimiter=";")
-            reading = list(reading_csv) # Считывание файла методом цикла
+            reading = list(reading_csv)  # Считывание файла методом цикла
         logger.info("Окончили выгрузку с файла csv формата")
         return reading
     except Exception as e:
@@ -51,7 +51,7 @@ def read_file_excel(filename: str = None) -> list:
         """Это логер для функции read_file_excel"""
         logger.info("Начал выгрузку с файла excel формата")
         reading_excel = pd.read_excel(filename)  # считывание EXCEL файла
-        return reading_excel.to_dict('records')
+        return reading_excel.to_dict(orient="records")
     except Exception as e:
         logger.error(f"Произошла ошибка: {e}")
         return []  # В случае ошибки возвращает пустой список

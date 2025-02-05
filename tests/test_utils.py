@@ -7,10 +7,11 @@ from config import ROOT_DIR
 
 def test_read_file():
     """Тестирует функцию открытия и считывания JSON файла"""
+    json_path = os.path.join(ROOT_DIR, "data", "operations.json")
     assert read_file_json() == []
     assert read_file_json(str([])) == []
     assert read_file_json("") == []
-    assert read_file_json("../data/operations.json")[0] == {
+    assert read_file_json(json_path)[0] == {
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
@@ -23,7 +24,7 @@ def test_read_file():
 
 def test_read_file_csv():
     """Тестирует функцию открытия и считывания CVS файла"""
-    csv_path = os.path.join(ROOT_DIR, 'data', 'transactions.csv')
+    csv_path = os.path.join(ROOT_DIR, "data", "transactions.csv")
     assert read_file_csv() == []
     assert read_file_csv(str([])) == []
     assert read_file_csv("") == []
@@ -42,7 +43,7 @@ def test_read_file_csv():
 
 def test_read_file_excel():
     """Тестирует функцию открытия и считывания EXCEL файла"""
-    xlsx_path = os.path.join(ROOT_DIR, 'data', 'transactions_excel.xlsx')
+    xlsx_path = os.path.join(ROOT_DIR, "data", "transactions_excel.xlsx")
     assert read_file_excel() == []
     assert read_file_excel(str([])) == []
     assert read_file_excel("") == []
