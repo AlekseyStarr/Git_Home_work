@@ -1,0 +1,24 @@
+import os
+
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+def check_currency(transaction: dict) -> float:
+    """Принимает транзакцию и конвертирует из иностранной валюты в РУБЛИ с запросом на API сайт"""
+    amount = float(transaction["operationAmount"]["amount"])  # получение суммы траты
+    currency = transaction["operationAmount"]["currency"]["code"]  # получение валюты
+    if currency != "RUB":
+        API_KEY = os.getenv("API_TOKEN")
+        url = f"https://api.apilayer.com/exchangerates_data/latest?symbols=RUB&base={currency}"
+
+        headers = {"apikey": f"{API_KEY}"}
+
+        response = requests.get(url, headers=headers)
+
+        # status_code = response.status_code
+
+        return round(response.json()["rates"]["RUB"] * amount, 2)
+    return amount
