@@ -1,6 +1,6 @@
+import logging
 import os
 from typing import Union
-import logging
 
 from config import ROOT_DIR
 

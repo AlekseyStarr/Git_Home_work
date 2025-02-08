@@ -1,8 +1,7 @@
 import os
 
-
-from src.utils import read_file_json, read_file_csv, read_file_excel
 from config import ROOT_DIR
+from src.utils import read_file_csv, read_file_excel, read_file_json
 
 
 def test_read_file():

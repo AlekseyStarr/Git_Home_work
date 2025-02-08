@@ -1,7 +1,8 @@
-import os
 import csv
 import json
 import logging
+import os
+
 import pandas as pd
 
 from config import ROOT_DIR

@@ -1,5 +1,5 @@
+from src.utils import read_file_excel, read_file_json
 from src.widget import get_data, mask_account_card
-from src.utils import read_file_json, read_file_excel
 
 user_input = input("Введите данные счета или карты: ")
 masked_output = (mask_account_card(user_input))
