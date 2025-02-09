@@ -51,7 +51,6 @@ def main():
             question_sort_data_reverse = input("Отсортировать по возрастанию или по убыванию?\nВвод: ")
             sort_data_reverse = re.search("убыванию", question_sort_data_reverse)
             sort_data_status_operation = sort_by_date(status_operation_filter, sort_data_reverse)
-            print(sort_data_status_operation)
             break
         elif question_sort_data == "нет":
             sort_data_status_operation = status_operation_filter
