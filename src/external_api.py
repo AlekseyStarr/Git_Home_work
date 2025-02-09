@@ -18,7 +18,5 @@ def check_currency(transaction: dict) -> float:
 
         response = requests.get(url, headers=headers)
 
-        # status_code = response.status_code
-
         return round(response.json()["rates"]["RUB"] * amount, 2)
     return amount
