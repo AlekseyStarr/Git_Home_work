@@ -1,11 +1,9 @@
 from typing import Union
-
 from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(number_account_card: str) -> str:
     """Функция, которая маскирует номер счета или карты"""
-
     parts = number_account_card.split(" ")  # Дробим строку на части по пробелу
     identifier = " ".join(parts[:-1])  # До -1 элемента это название, соединяем
     number = parts[-1]  # а -1 номер, Берем в переменную для удобства

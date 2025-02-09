@@ -51,6 +51,7 @@ def main():
             question_sort_data_reverse = input("Отсортировать по возрастанию или по убыванию?\nВвод: ")
             sort_data_reverse = re.search("убыванию", question_sort_data_reverse)
             sort_data_status_operation = sort_by_date(status_operation_filter, sort_data_reverse)
+            print(sort_data_status_operation) # тест сортировки по убыванию
             break
         elif question_sort_data == "нет":
             sort_data_status_operation = status_operation_filter
@@ -66,7 +67,7 @@ def main():
             for i in sort_data_status_operation:
                 if i["currency_code"] == "RUB":
                     new_list_sort.append(i)
-            print(new_list_sort)
+            print(new_list_sort) #тест фильтрации рублевого счета
             break
         elif question_currency == "нет":
             new_list_sort = sort_data_status_operation
@@ -81,6 +82,7 @@ def main():
         if question_description == "да":
             question_description_word = input("Введите слово: ")
             finaly_filter = filter_word(new_list_sort, question_description_word)
+            print(finaly_filter) # тест фильтрации по слову
             break
         elif question_description == "нет":
             finaly_filter = new_list_sort
@@ -89,18 +91,17 @@ def main():
             print("Данного варианта нет в списке, попробуйте еще раз: ")
             continue
 
-    print(f"Распечатываю итоговый список транзакций...\nВсего банковский операций: {len(finaly_filter)}\n")
+    print(f"Распечатываю итоговый список транзакций...\nВсего банковских операций в выборке: {len(finaly_filter)}\n")
     if len(finaly_filter) == 0:
         for trans in finaly_filter:
             if trans["description"] in "Открытие вклада" in trans["description"]:
                 print(f"{get_data(trans["date"])} Открытие вклада\n{mask_account_card(trans["to"])}"
-                      f"\nСумма:{trans["amount"]}\n")
+                  f"\nСумма:{trans["amount"]}\n")
             else:
                 print(f"{get_data(trans["date"])} {trans["description"]}\n{mask_account_card(trans["from"])} -> "
                       f"{mask_account_card(trans["to"])}\nСумма: {trans["amount"]} {trans["currency_code"]}\n")
         else:
             print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
-
 
 if __name__ == '__main__':
     main()
