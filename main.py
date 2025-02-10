@@ -109,7 +109,10 @@ def main():
         currency_code = trans.get("currency_code") or trans.get("operationAmount", {}).get("currency", {}).get("code")
         amount = trans.get("amount") or trans.get("operationAmount", {}).get("amount", {})
         if trans["description"] in "Открытие вклада" in trans["description"]:
-            print(f"{get_data(trans["date"])} Открытие вклада\n{mask_account_card(trans["to"])}" f"\nСумма:{amount}\n")
+            print(
+                f"{get_data(trans["date"])} Открытие вклада\n{mask_account_card(trans["to"])}"
+                f"\nСумма:{amount} {currency_code}\n"
+            )
         else:
             print(
                 f"{get_data(trans["date"])} {trans["description"]}\n{mask_account_card(trans["from"])} -> "
