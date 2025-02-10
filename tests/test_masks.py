@@ -4,7 +4,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 
 def test_mask_card(testing_masks):
-    assert get_mask_card_number(testing_masks) == '1596 83** **** 5199'
+    assert get_mask_card_number(testing_masks) == "1596 83** **** 5199"
     assert get_mask_card_number("") == "Ошибка, проверьте правильность ввода"
 
 
