@@ -10,6 +10,7 @@ def filter_word(list_filter: list, option: str) -> list:
             new_list_filter.append(i)
     return new_list_filter
 
+
 def filter_category(list_filter: list, list_category: list) -> dict:
     """Функция фильтрует список по категориям и возвращает количество операция по категориям"""
     new_list = []
