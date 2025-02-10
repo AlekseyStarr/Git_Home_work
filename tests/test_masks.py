@@ -1,32 +1,24 @@
 import pytest
 
-from src.widget import mask_account_card
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def test_mask_card(testing_masks):
-    assert mask_account_card(testing_masks) == "Maestro 1596 83** **** 5199"
-
-    assert mask_account_card(str([])) == "Ошибка, проверьте правильность ввода."
-
-    assert mask_account_card("") == "Ошибка, проверьте правильность ввода."
-
-    with pytest.raises(TypeError):
-        assert mask_account_card(1) == "Ошибка, проверьте правильность ввода."
+    assert get_mask_card_number(testing_masks) == '1596 83** **** 5199'
+    assert get_mask_card_number("") == "Ошибка, проверьте правильность ввода"
 
 
 def test_account(testing_card_number):
-    assert mask_account_card(testing_card_number) == "Счет **4305"
-
-    assert mask_account_card("") == "Ошибка, проверьте правильность ввода."
+    assert get_mask_account(testing_card_number) == "**4305"
+    assert get_mask_account("") == "Ошибка, проверьте правильность ввода"
 
 
 @pytest.mark.parametrize(
     "inter, out",
     [
-        ("Счет 73654108430135874305", "Счет **4305"),
-        ("Счет 934934", "Ошибка, проверьте правильность ввода."),
-        ("", "Ошибка, проверьте правильность ввода."),
+        ("73654108430135874305", "**4305"),
+        ("", "Ошибка, проверьте правильность ввода"),
     ],
 )
 def test_account_par(inter, out):
-    assert mask_account_card(inter) == out
+    assert get_mask_account(inter) == out
